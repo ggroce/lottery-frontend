@@ -9,15 +9,12 @@ class App extends React.Component {
     balance: '', 
     value: '', 
     message: '',
-    test1: 'testthis', 
-    test2: 'testthis',
   };
 
   async componentDidMount() {
     const manager = (await lottery.methods.manager().call()).toLowerCase();
     const players = await lottery.methods.getPlayers().call();
     const balance = await web3.eth.getBalance(lottery.options.address);
-    // console.log(manager);
     this.setState({ manager, players, balance });
   }
 
@@ -26,8 +23,6 @@ class App extends React.Component {
     if (!this.state.value || this.state.value === "") {
       return;
     }
-
-    // const accounts = await web3.eth.getAccounts();
 
     this.setState({ message: 'Waiting on transaction...' });
 
